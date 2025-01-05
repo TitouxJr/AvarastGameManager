@@ -1,0 +1,12 @@
+# Game Settings
+game-duration-minutes: 30
+countdown-seconds: 10
+
+# List of blocks that can be broken during games
+breakable-blocks:
+  - DIAMOND_ORE
+  - IRON_ORE
+  - GOLD_ORE
+  - EMERALD_ORE
+  - COAL_ORE
+  - STONE 
