@@ -2,13 +2,13 @@ name: AvarastGameManager
 version: '1.0'
 main: io.github.TitouxJr.avarastGameManager.AvarastGameManager
 api-version: '1.20'
-description: A mini-game manager plugin for Minecraft servers
+description: Un plugin de mini-jeu pour les serveurs Minecraft
 commands:
   extraction:
-    description: Start or stop the Extraction mini-game
-    usage: /<command> [stop]
+    description: Démarrer ou arrêter le mini-jeu Extraction
+    usage: "§cUtilisation : /<command> <start|stop>"
     permission: avarastgamemanager.extraction
 permissions:
   avarastgamemanager.extraction:
-    description: Allows players to start and stop the extraction mini-game
+    description: Permet aux joueurs de démarrer et d'arrêter le mini-jeu extraction
     default: true

@@ -18,15 +18,20 @@ public class ExtractionCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage(ChatColor.RED + "This command can only be used by players!");
+            sender.sendMessage(ChatColor.RED + "Cette commande ne peut être utilisée que par des joueurs !");
             return true;
         }
 
         Player player = (Player) sender;
 
         if (args.length == 0) {
+            player.sendMessage(ChatColor.RED + "Utilisation : /extraction <start|stop>");
+            return true;
+        }
+
+        if (args[0].equalsIgnoreCase("start")) {
             if (plugin.getGameManager().getCurrentState() != GameState.LOBBY) {
-                player.sendMessage(ChatColor.RED + "A game is already in progress!");
+                player.sendMessage(ChatColor.RED + "Une partie est déjà en cours !");
                 return true;
             }
             
@@ -35,18 +40,19 @@ public class ExtractionCommand implements CommandExecutor {
             return true;
         }
 
-        if (args.length == 1 && args[0].equalsIgnoreCase("stop")) {
+        if (args[0].equalsIgnoreCase("stop")) {
             if (plugin.getGameManager().getCurrentState() == GameState.LOBBY) {
-                player.sendMessage(ChatColor.RED + "No game is currently running!");
+                player.sendMessage(ChatColor.RED + "Aucune partie n'est en cours !");
                 return true;
             }
             
             // Stop the game
             plugin.getExtractionGame().endGame();
-            player.sendMessage(ChatColor.GREEN + "Game has been forcefully stopped!");
+            player.sendMessage(ChatColor.GREEN + "La partie a été arrêtée !");
             return true;
         }
 
-        return false;
+        player.sendMessage(ChatColor.RED + "Utilisation : /extraction <start|stop>");
+        return true;
     }
 } 

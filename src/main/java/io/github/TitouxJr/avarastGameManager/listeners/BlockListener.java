@@ -31,7 +31,13 @@ public class BlockListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onBlockBreak(BlockBreakEvent event) {
+        Player player = event.getPlayer();
         GameState currentState = plugin.getGameManager().getCurrentState();
+        
+        // Si le joueur est un opérateur, il peut casser n'importe quel bloc
+        if (player.isOp()) {
+            return;
+        }
         
         // Si le jeu n'est pas actif, permettre le cassage normal des blocs
         if (currentState != GameState.ACTIVE) {
@@ -44,7 +50,6 @@ public class BlockListener implements Listener {
             return;
         }
 
-        Player player = event.getPlayer();
         Location blockLoc = event.getBlock().getLocation();
 
         // Track the block for respawning
@@ -67,7 +72,13 @@ public class BlockListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onBlockPlace(BlockPlaceEvent event) {
+        Player player = event.getPlayer();
         GameState currentState = plugin.getGameManager().getCurrentState();
+        
+        // Si le joueur est un opérateur, il peut placer n'importe quel bloc
+        if (player.isOp()) {
+            return;
+        }
         
         // Empêcher le placement de blocs uniquement pendant le jeu
         if (currentState == GameState.ACTIVE) {
